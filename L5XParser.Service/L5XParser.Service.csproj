@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\L5XParser.Logic\L5XParser.Logic.csproj" />
+    <ProjectReference Include="..\L5XParser.Model\L5XParser.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Utilities">
+      <HintPath>..\Utilities\bin\Debug\net6.0-windows\Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

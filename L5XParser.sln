@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L5XParser.exe", "L5XParser.exe\L5XParser.exe.csproj", "{8DF378E1-E36A-4AA2-B467-77B6F19B55A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Utilities\Utilities.csproj", "{615858F0-46E3-494D-8A1E-73F9CCBD4990}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L5XParser.Logic", "L5XParser.Logic\L5XParser.Logic.csproj", "{601545FC-B11B-48CF-A976-8BF517976478}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L5XParser.Model", "L5XParser.Model\L5XParser.Model.csproj", "{2B3A008E-D3D8-4EFF-81F1-FFEE9CE5D1CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L5XParser.Service", "L5XParser.Service\L5XParser.Service.csproj", "{DEC8E658-5BBC-4938-93B2-643BCFA45C9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L5XParser.Test", "L5XParser.Test\L5XParser.Test.csproj", "{EFEB9D19-C19E-41FE-9BFF-FFEE99180D97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DF378E1-E36A-4AA2-B467-77B6F19B55A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF378E1-E36A-4AA2-B467-77B6F19B55A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF378E1-E36A-4AA2-B467-77B6F19B55A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF378E1-E36A-4AA2-B467-77B6F19B55A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615858F0-46E3-494D-8A1E-73F9CCBD4990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615858F0-46E3-494D-8A1E-73F9CCBD4990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615858F0-46E3-494D-8A1E-73F9CCBD4990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615858F0-46E3-494D-8A1E-73F9CCBD4990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{601545FC-B11B-48CF-A976-8BF517976478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601545FC-B11B-48CF-A976-8BF517976478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601545FC-B11B-48CF-A976-8BF517976478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601545FC-B11B-48CF-A976-8BF517976478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3A008E-D3D8-4EFF-81F1-FFEE9CE5D1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3A008E-D3D8-4EFF-81F1-FFEE9CE5D1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3A008E-D3D8-4EFF-81F1-FFEE9CE5D1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3A008E-D3D8-4EFF-81F1-FFEE9CE5D1CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC8E658-5BBC-4938-93B2-643BCFA45C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC8E658-5BBC-4938-93B2-643BCFA45C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC8E658-5BBC-4938-93B2-643BCFA45C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC8E658-5BBC-4938-93B2-643BCFA45C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFEB9D19-C19E-41FE-9BFF-FFEE99180D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFEB9D19-C19E-41FE-9BFF-FFEE99180D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFEB9D19-C19E-41FE-9BFF-FFEE99180D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFEB9D19-C19E-41FE-9BFF-FFEE99180D97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69242B5B-7D50-4D41-8546-64E041EB2D15}
+	EndGlobalSection
+EndGlobal

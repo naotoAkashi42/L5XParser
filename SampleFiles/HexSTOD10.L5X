@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--STOD for Hex STRING10-->
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="20.05" TargetName="HexSTOD10" TargetType="AddOnInstructionDefinition" TargetRevision="1.1 " TargetLastEdited="2018-06-04T14:13:40.254Z" ContainsContext="true" Owner="Corning Incorporated, Corning Incorporated" ExportDate="Tue Mar 24 16:49:01 2020" ExportOptions="References DecoratedData Context Dependencies ForceProtectedEncoding AllProjDocTrans">
+    <Controller Use="Context" Name="none">
+        <DataTypes Use="Context">
+            <DataType Name="STRING10" Family="StringFamily" Class="User">
+                <Members>
+                    <Member Name="LEN" DataType="DINT" Dimension="0" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write" />
+                    <Member Name="DATA" DataType="SINT" Dimension="10" Radix="ASCII" Hidden="false" ExternalAccess="Read/Write" />
+                </Members>
+            </DataType>
+            <DataType Name="STRING10_2" Family="StringFamily" Class="User">
+                <Members>
+                    <Member Name="LEN" DataType="DINT" Dimension="0" Radix="Decimal" Hidden="false" ExternalAccess="Read/Write" />
+                    <Member Name="DATA" DataType="SINT" Dimension="10" Radix="ASCII" Hidden="false" ExternalAccess="Read/Write" />
+                </Members>
+            </DataType>
+        </DataTypes>
+        <AddOnInstructionDefinitions Use="Context">
+            <AddOnInstructionDefinition Use="Target" Name="HexSTOD10" Revision="1.1" Vendor="plctalk" ExecutePrescan="false" ExecutePostscan="false" ExecuteEnableInFalse="false" CreatedDate="2018-05-10T18:33:47.996Z" CreatedBy="Not Available" EditedDate="2018-06-04T14:13:40.254Z" EditedBy="NA\washburnpe" SoftwareRevision="v18.02">
+                <Description>
+                    <![CDATA[STOD for Hex STRING10]]>
+                </Description>
+                <RevisionNote>
+                    <![CDATA[Mimics STOD native instruction, except interprets characters as Hexadecimal digits. The Source input must be a standard STRING type and Dest output a DINT, unlike flexible I/O types with the native STOD. One extension:  if the HEX characters are preceded by "16#" then underscores among the HEX will be ignored (e.g., "16#1234_ABCD" is treated as "1234ABCD" for conversion purposes).
+Direct questions, comments, or bug reports to user Mispeld at www.plctalk.net forums. ]]>
+                </RevisionNote>
+                <Parameters>
+                    <Parameter Name="EnableIn" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+                        <Description>
+                            <![CDATA[Enable Input - System Defined Parameter]]>
+                        </Description>
+                    </Parameter>
+                    <Parameter Name="EnableOut" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+                        <Description>
+                            <![CDATA[Enable Output - System Defined Parameter]]>
+                        </Description>
+                    </Parameter>
+                    <Parameter Name="Source" TagType="Base" DataType="STRING10" Usage="InOut" Required="true" Visible="true" Constant="false">
+                        <Description>
+                            <![CDATA[String To Convert]]>
+                        </Description>
+                    </Parameter>
+                    <Parameter Name="Dest" TagType="Base" DataType="DINT" Usage="Output" Radix="Decimal" Required="true" Visible="true" ExternalAccess="Read Only">
+                        <Description>
+                            <![CDATA[DINT for Result]]>
+                        </Description>
+                        <DefaultData>00 00 00 00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="DINT" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </Parameter>
+                    <Parameter Name="DN" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+                        <Description>
+                            <![CDATA[Done/Success]]>
+                        </Description>
+                        <DefaultData>00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="BOOL" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </Parameter>
+                    <Parameter Name="EM" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+                        <Description>
+                            <![CDATA[Empty Source
+Dest Unchanged]]>
+                        </Description>
+                        <DefaultData>00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="BOOL" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </Parameter>
+                    <Parameter Name="ER" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+                        <Description>
+                            <![CDATA[Conversion Error
+Undefined Result]]>
+                        </Description>
+                        <DefaultData>00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="BOOL" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </Parameter>
+                </Parameters>
+                <LocalTags>
+                    <LocalTag Name="SrcLength" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00 00 00 00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="DINT" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="SrcIndex" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00 00 00 00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="DINT" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="SrcASCVal" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00 00 00 00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="DINT" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="TrimDone" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="BOOL" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="ScanCount" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00 00 00 00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="DINT" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="ScanNext" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="BOOL" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="WorkDest" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00 00 00 00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="DINT" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="SkipChar" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="BOOL" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="SkipUnderscore" DataType="BOOL" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="BOOL" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                    <LocalTag Name="ScanValue" DataType="DINT" Radix="Decimal" ExternalAccess="None">
+                        <DefaultData>00 00 00 00</DefaultData>
+                        <DefaultData Format="Decorated">
+                            <DataValue DataType="DINT" Radix="Decimal" Value="0" />
+                        </DefaultData>
+                    </LocalTag>
+                </LocalTags>
+                <Routines>
+                    <Routine Name="Logic" Type="RLL">
+                        <RLLContent>
+                            <Rung Number="0" Type="N">
+                                <Text>
+                                    <![CDATA[OTU(DN)OTU(EM)OTU(ER)MOV(Source.LEN,SrcLength);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="1" Type="N">
+                                <Comment>
+                                    <![CDATA[First check for an empty source string, and, if so, jump directly to the end with the Dest parameter unchanged, as does the native STOD instruction.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[EQU(SrcLength,0)[OTL(EM) ,JMP(lblEND) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="2" Type="N">
+                                <Comment>
+                                    <![CDATA[Since there is at least one character in the string, set the result -- Dest -- to zero as per STOD.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[[CLR(Dest) ,CLR(WorkDest) ,CLR(SrcIndex) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="3" Type="N">
+                                <Comment>
+                                    <![CDATA[Do...While:  Trim all leading non-numeric/HEX characters as per STOD, as well as leading zeros.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[LBL(lblTrim)NOP();]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="4" Type="N">
+                                <Text>
+                                    <![CDATA[MOV(Source.DATA[SrcIndex],SrcASCVal);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="5" Type="N">
+                                <Comment>
+                                    <![CDATA[Skip characters until 1 to 9, or A to F, or a to f is encountered.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[[LIM(49,SrcASCVal,57) ,LIM(65,SrcASCVal,70) ,LIM(97,SrcASCVal,102) ]OTE(TrimDone);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="6" Type="N">
+                                <Comment>
+                                    <![CDATA[Index to the next character in continue with Trim Do...While]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIO(TrimDone)[ADD(1,SrcIndex,SrcIndex) ,LES(SrcIndex,SrcLength) JMP(lblTrim) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="7" Type="N">
+                                <Comment>
+                                    <![CDATA[Jump to the END if there are no valid numeric/HEX characters in the string to convert.  Result will be zero, and successful, as per STOD.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[GEQ(SrcIndex,SrcLength)[OTL(DN) ,JMP(lblEND) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="8" Type="N">
+                                <Comment>
+                                    <![CDATA[Reaching here, SrcIndex will be pointing to the first (MSD) character in the string to convert.  Initialize counters for scannig.  By default do not skip underscores unless 16# is prefixed.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[CLR(WorkDest)CLR(ScanCount)OTU(SkipUnderscore);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="9" Type="N">
+                                <Comment>
+                                    <![CDATA[Do...While:  Scan through the string until the first non-numeric/HEX character, or end of the string.  Move valid HEX digit values into a DINT array.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[LBL(lblScan)CLR(ScanValue)OTU(SkipChar)OTU(ScanNext);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="10" Type="N">
+                                <Comment>
+                                    <![CDATA[ASCII zero]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[EQU(SrcASCVal,48)OTL(ScanNext);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="11" Type="N">
+                                <Comment>
+                                    <![CDATA[ASCII 1 to 9]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIO(ScanNext)LIM(49,SrcASCVal,57)SUB(SrcASCVal,48,ScanValue)OTL(ScanNext);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="12" Type="N">
+                                <Comment>
+                                    <![CDATA[ASCII A to F]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIO(ScanNext)LIM(65,SrcASCVal,70)SUB(SrcASCVal,55,ScanValue)OTL(ScanNext);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="13" Type="N">
+                                <Comment>
+                                    <![CDATA[ASCII a to f]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIO(ScanNext)LIM(97,SrcASCVal,102)SUB(SrcASCVal,87,ScanValue)OTL(ScanNext);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="14" Type="N">
+                                <Comment>
+                                    <![CDATA[Special Case:  Ignore ASCII underscores embeddied in the string, but only if "16#" was used as a prefix.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIO(ScanNext)XIC(SkipUnderscore)EQU(SrcASCVal,95)OTL(SkipChar)OTL(ScanNext);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="15" Type="N">
+                                <Comment>
+                                    <![CDATA[Special Case:  Ignore the prefix consisting of "16#" commonly used when writing HEX strings.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIO(ScanNext)EQU(SrcASCVal,35)EQU(ScanCount,2)EQU(WorkDest,16#16)[CLR(WorkDest) ,CLR(ScanCount) ,OTL(SkipUnderscore) ,OTL(SkipChar) OTL(ScanNext) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="16" Type="N">
+                                <Comment>
+                                    <![CDATA[If not skipping this character, shift the working result and add the next digit.  Then save the digit for later inspection.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIC(ScanNext)XIO(SkipChar)[BTD(WorkDest,0,WorkDest,4,28) AND(WorkDest,16#FFFFFFF0,WorkDest) OR(WorkDest,ScanValue,WorkDest) ,ADD(1,ScanCount,ScanCount) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="17" Type="N">
+                                <Comment>
+                                    <![CDATA[Increment the indexes and verify bounds to continue with loop.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIC(ScanNext)ADD(1,SrcIndex,SrcIndex)[GEQ(SrcIndex,SrcLength) ,GRT(ScanCount,8) OTL(ER) ]OTU(ScanNext);]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="18" Type="N">
+                                <Comment>
+                                    <![CDATA[Get the next character from the string and continue with Scan Do...While.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[XIC(ScanNext)[MOV(Source.DATA[SrcIndex],SrcASCVal) ,JMP(lblScan) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="19" Type="N">
+                                <Comment>
+                                    <![CDATA[Reaching here, all of the HEX values have been combined into the woking destination; now move to the return parmeter.]]>
+                                </Comment>
+                                <Text>
+                                    <![CDATA[[MOV(WorkDest,Dest) ,XIC(S:V) OTL(ER) ];]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="20" Type="N">
+                                <Text>
+                                    <![CDATA[LBL(lblEND)NOP();]]>
+                                </Text>
+                            </Rung>
+                            <Rung Number="21" Type="N">
+                                <Text>
+                                    <![CDATA[XIO(EM)XIO(ER)OTL(DN);]]>
+                                </Text>
+                            </Rung>
+                        </RLLContent>
+                    </Routine>
+                </Routines>
+                <Dependencies>
+                    <Dependency Type="DataType" Name="STRING10" />
+                </Dependencies>
+            </AddOnInstructionDefinition>
+        </AddOnInstructionDefinitions>
+    </Controller>
+</RSLogix5000Content>

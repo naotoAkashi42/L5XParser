@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\L5XParser.Service\L5XParser.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Utilities">
+      <HintPath>..\Utilities\bin\Debug\net6.0-windows\Utilities.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
