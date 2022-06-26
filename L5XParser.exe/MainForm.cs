@@ -15,8 +15,8 @@ namespace L5XParser.exe
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            var target = FileIo.GetTargetFile("rockwell file |*.L5X");
-            if (target == null) return;
+            var target = FileIo.GetTargetFiles("rockwell file |*.L5X");
+            if (target.Count == 0) return;
 
             Analayser.OutputProgramInfo(target);
         }

@@ -31,6 +31,7 @@ namespace L5XParser.Model.ProgramElement
             var regex = new Regex(pattern);
             var removed = RemoveSymbol(_text);
             var elements = regex.Split(removed).Where(s => !s.Equals(" ") || string.IsNullOrEmpty(s)).Select(s => s.Trim(' ')).ToList();
+            elements.RemoveAll(ele => string.IsNullOrEmpty(ele));
             return elements;
         }
 
@@ -42,7 +43,8 @@ namespace L5XParser.Model.ProgramElement
                 "];]]>",
                 "[",
                 "]",
-                ","
+                ",",
+                ";",
             };
 
             sym.ForEach(s => text = text.Replace(s, string.Empty));
