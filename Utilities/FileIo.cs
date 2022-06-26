@@ -2,25 +2,29 @@
 {
     public static class FileIo
     {
-        public static FileInfo GetTargetFile(string ext)
+        public static IReadOnlyList<FileInfo> GetTargetFiles(string ext)
         {
             using (var form = new OpenFileDialog())
             {
                 form.Filter = ext;
+                form.Multiselect = true;
                 var result = form.ShowDialog();
 
                 if (result == DialogResult.Cancel) return null;
-
-                return new FileInfo(form.FileName);
+                var targetList = new List<FileInfo>();
+                
+                form.FileNames.ForEach(fileName => targetList.Add(new FileInfo(fileName)));
+                
+                return targetList;
             }
         }
 
-        public static IReadOnlyList<FileInfo> GetTargetFiles(string ext)
-        {
-            var targetDir = GetTargetDir();
-            var targetFiles = Directory.GetFiles(targetDir.FullName, ext, SearchOption.AllDirectories).Select(file => new FileInfo(file));
-            return targetFiles.ToList();
-        }
+        //public static IReadOnlyList<FileInfo> GetTargetFiles(string ext)
+        //{
+        //    var targetDir = GetTargetDir();
+        //    var targetFiles = Directory.GetFiles(targetDir.FullName, ext, SearchOption.AllDirectories).Select(file => new FileInfo(file));
+        //    return targetFiles.ToList();
+        //}
 
         private static DirectoryInfo GetTargetDir()
         {

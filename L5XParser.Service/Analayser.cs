@@ -1,5 +1,6 @@
 ﻿using L5XParser.Model;
 using System.Xml.Linq;
+using Utilities;
 
 namespace L5XParser.Service
 {
@@ -30,28 +31,32 @@ namespace L5XParser.Service
             }
         }
 
-        public static void OutputProgramInfo(FileInfo src)
+        public static void OutputProgramInfo(IReadOnlyList<FileInfo> srcs)
         {
-            if (!src.Exists) throw new ArgumentException();
-
-            var xml = XElement.Load(src.FullName);
-
-
-            var programs = Factory.CreateProgramInfoFromL5X(new L5XFile(xml));
-
-            using (var sw = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "temp.txt")))
+            if(srcs.Any(src => !src.Exists))
             {
-                foreach (var program in programs)
-                {
-                    sw.WriteLine(program.ToString());
+                throw new ArgumentException();
+            }
 
-                    sw.WriteLine("---Instructions---");
-                    foreach(var ele in program.GetUsingInstructionsWithCnt())
+            foreach(var src in srcs)
+            {
+                var xml = XElement.Load(src.FullName);
+                var programs = Factory.CreateProgramInfoFromL5X(new L5XFile(xml));
+
+                using (var sw = new StreamWriter(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "result.txt")))
+                {
+                    foreach (var program in p                   rograms)
                     {
-                        sw.WriteLine($" {ele.Key} [{ele.Value}]");
+                        sw.WriteLine(program.ToString());
+
+                        sw.WriteLine("---Instructions---");
+                        foreach (var ele in program.GetUsingInstructionsWithCnt())
+                        {
+                            sw.WriteLine($" {ele.Key} [{ele.Value}]");
+                        }
+                        sw.WriteLine("------");
+                        sw.WriteLine();
                     }
-                    sw.WriteLine("------");
-                    sw.WriteLine();
                 }
             }
         }

@@ -23,7 +23,7 @@ namespace L5XParser.Model.ProgramElement
             var sb = new StringBuilder();
             sb.Append($"Program Name = {_name}"+ Environment.NewLine);
             
-            sb.Append($"--Tags--" + Environment.NewLine);
+            sb.Append($"--Program Tags--" + Environment.NewLine);
             _tags.ForEach(tag => sb.Append(tag.ToString() + Environment.NewLine));
 
             sb.Append($"--Routines--" + Environment.NewLine);
